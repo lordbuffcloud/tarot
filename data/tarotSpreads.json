@@ -1,0 +1,118 @@
+[
+  {
+    "id": "three_card_basic",
+    "name": "Three Card Basic",
+    "description": "A versatile spread offering insights into a situation's progression or different facets of a question.",
+    "card_positions": [
+      {
+        "id": "pos1",
+        "name": "Past",
+        "description": "Influences from the past that are relevant to the query, or the foundation of the situation."
+      },
+      {
+        "id": "pos2",
+        "name": "Present",
+        "description": "The current state of the situation, your current feelings, or the central challenge/opportunity."
+      },
+      {
+        "id": "pos3",
+        "name": "Future",
+        "description": "The potential outcome or direction if things continue on their current path; advice for moving forward."
+      }
+    ]
+  },
+  {
+    "id": "celtic_cross",
+    "name": "Celtic Cross",
+    "description": "A comprehensive and traditional spread that delves deep into a situation from multiple angles, offering a detailed perspective.",
+    "card_positions": [
+      {
+        "id": "pos1",
+        "name": "The Heart of the Matter / Present Situation",
+        "description": "Represents the core of the querent's situation or question."
+      },
+      {
+        "id": "pos2",
+        "name": "Crossing Influences / Immediate Challenge",
+        "description": "The immediate challenge or obstacle affecting the situation. This card is placed across the first."
+      },
+      {
+        "id": "pos3",
+        "name": "The Foundation / Distant Past",
+        "description": "The underlying basis of the situation, events from the more distant past."
+      },
+      {
+        "id": "pos4",
+        "name": "Recent Past / Passing Influences",
+        "description": "Events or influences that have just passed or are now waning."
+      },
+      {
+        "id": "pos5",
+        "name": "Possible Outcome / Crown of Potential",
+        "description": "What could be achieved or the best possible outcome that can be hoped for given the circumstances."
+      },
+      {
+        "id": "pos6",
+        "name": "Near Future / Approaching Influences",
+        "description": "What is likely to happen in the near future."
+      },
+      {
+        "id": "pos7",
+        "name": "Self / The Querent's Attitude",
+        "description": "The querent's current feelings, attitude, or role in the situation."
+      },
+      {
+        "id": "pos8",
+        "name": "External Environment / Others' Influence",
+        "description": "The influence of others, external circumstances, or the atmosphere surrounding the situation."
+      },
+      {
+        "id": "pos9",
+        "name": "Hopes and Fears",
+        "description": "The querent's hopes or fears regarding the situation."
+      },
+      {
+        "id": "pos10",
+        "name": "Final Outcome / Resolution",
+        "description": "The ultimate outcome or resolution of the situation, taking all other cards into account."
+      }
+    ]
+  },
+  {
+    "id": "relationship_spread",
+    "name": "Relationship Dynamics",
+    "description": "Explores the dynamics between two people in a relationship.",
+    "card_positions": [
+      {
+        "id": "pos1",
+        "name": "You (Querent)",
+        "description": "Your perspective, feelings, and role in the relationship."
+      },
+      {
+        "id": "pos2",
+        "name": "The Other Person",
+        "description": "Their perspective, feelings, and role in the relationship."
+      },
+      {
+        "id": "pos3",
+        "name": "Current Dynamics / Connection",
+        "description": "The current state of the relationship, the energy connecting you."
+      },
+      {
+        "id": "pos4",
+        "name": "Strengths of the Relationship",
+        "description": "The positive aspects and strengths that support the connection."
+      },
+      {
+        "id": "pos5",
+        "name": "Challenges in the Relationship",
+        "description": "Obstacles or difficulties that need to be addressed."
+      },
+      {
+        "id": "pos6",
+        "name": "Guidance / Path Forward",
+        "description": "Advice or the potential direction for the relationship to evolve healthily."
+      }
+    ]
+  }
+] 

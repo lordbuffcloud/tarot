@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-astral-dark text-astral-light;
+    /* You could add a subtle background pattern or gradient here */
+    /* e.g., background-image: url('/path-to-subtle-star-pattern.svg'); */
+  }
+
+  /* Styling for MUI components to better fit the dark theme */
+  /* This is a general approach; specific overrides might be needed */
+  .MuiInputBase-root {
+    @apply !text-astral-light !bg-shadow-blue;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    @apply !border-esoteric-purple/50;
+  }
+  .MuiFormLabel-root {
+    @apply !text-astral-light/70;
+  }
+  .MuiFormLabel-root.Mui-focused {
+    @apply !text-esoteric-purple;
+  }
+  .MuiCheckbox-root svg {
+    @apply !fill-astral-light/70;
+  }
+  .MuiCheckbox-root.Mui-checked svg {
+    @apply !fill-esoteric-purple;
+  }
+  .MuiAutocomplete-popupIndicator,
+  .MuiAutocomplete-clearIndicator {
+    @apply !text-astral-light/70;
+  }
+  .MuiAutocomplete-paper {
+    @apply !bg-astral-bg !text-astral-light !border !border-esoteric-purple/50;
+  }
+  .MuiAutocomplete-option {
+    @apply hover:!bg-shadow-blue;
+  }
+  .MuiAutocomplete-option[aria-selected="true"] {
+    @apply !bg-esoteric-purple/30;
+  }
+}
+
+/* Existing prose styles - we can adjust these if needed */
+@layer components {
+  .prose-tarot {
+    @apply prose dark:prose-invert;
+    /* Update prose colors to match new theme */
+    /* This is a basic example; you might need more specific selectors */
+    h1, h2, h3, h4, h5, h6 {
+      @apply text-esoteric-purple;
+    }
+    strong {
+      @apply text-starlight-gold;
+    }
+    a {
+      @apply text-cosmic-blue hover:text-starlight-gold;
+    }
+  }
+  .prose-tarot-major {
+    @apply prose-headings:text-purple-500 prose-strong:text-purple-600;
+  }
+  .prose-tarot-cups {
+    @apply prose-headings:text-blue-500 prose-strong:text-blue-600;
+  }
+  .prose-tarot-swords {
+    @apply prose-headings:text-gray-500 prose-strong:text-gray-600;
+  }
+  .prose-tarot-wands {
+    @apply prose-headings:text-red-500 prose-strong:text-red-600;
+  }
+  .prose-tarot-pentacles {
+    @apply prose-headings:text-green-500 prose-strong:text-green-600;
+  }
+  .prose-tarot-amber {
+     @apply text-amber-500;
+  }
+}
