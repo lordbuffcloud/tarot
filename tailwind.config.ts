@@ -11,6 +11,22 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        'theme-black': '#000000',
+        'theme-near-black': '#111111',
+        'theme-dark-gray': '#333333',
+        'theme-medium-gray': '#666666',
+        'theme-light-gray': '#999999',
+        'theme-very-light-gray': '#CCCCCC',
+        'theme-near-white': '#EEEEEE',
+        'theme-white': '#FFFFFF',
+        // Functional names using the grayscale palette
+        'text-main': '#EEEEEE',
+        'text-muted': '#999999',
+        'bg-main': '#111111',
+        'bg-card': '#333333',
+        'border-accent': '#666666',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

@@ -4,78 +4,73 @@
 
 @layer base {
   body {
-    @apply bg-astral-dark text-astral-light;
+    background-color: theme('colors.bg-main');
+    color: theme('colors.text-main');
     /* You could add a subtle background pattern or gradient here */
-    /* e.g., background-image: url('/path-to-subtle-star-pattern.svg'); */
   }
 
-  /* Styling for MUI components to better fit the dark theme */
-  /* This is a general approach; specific overrides might be needed */
+  /* Styling for MUI components to better fit the new grayscale theme */
+  /*
   .MuiInputBase-root {
-    @apply !text-astral-light !bg-shadow-blue;
+    @apply !text-text-main !bg-bg-card;
   }
   .MuiOutlinedInput-notchedOutline {
-    @apply !border-esoteric-purple/50;
+    @apply !border-border-accent;
   }
   .MuiFormLabel-root {
-    @apply !text-astral-light/70;
+    @apply !text-text-muted;
   }
   .MuiFormLabel-root.Mui-focused {
-    @apply !text-esoteric-purple;
+    @apply !text-text-main;
   }
   .MuiCheckbox-root svg {
-    @apply !fill-astral-light/70;
+    @apply !fill-text-muted;
   }
   .MuiCheckbox-root.Mui-checked svg {
-    @apply !fill-esoteric-purple;
+    @apply !fill-text-main;
   }
   .MuiAutocomplete-popupIndicator,
   .MuiAutocomplete-clearIndicator {
-    @apply !text-astral-light/70;
+    @apply !text-text-muted;
   }
   .MuiAutocomplete-paper {
-    @apply !bg-astral-bg !text-astral-light !border !border-esoteric-purple/50;
+    @apply !bg-bg-card !text-text-main !border !border-border-accent;
   }
   .MuiAutocomplete-option {
-    @apply hover:!bg-shadow-blue;
+    @apply hover:!bg-theme-dark-gray;
   }
   .MuiAutocomplete-option[aria-selected="true"] {
-    @apply !bg-esoteric-purple/30;
+    @apply !bg-theme-medium-gray;
   }
+  */
 }
 
-/* Existing prose styles - we can adjust these if needed */
+/* Updated prose styles for the new grayscale theme */
 @layer components {
   .prose-tarot {
     @apply prose dark:prose-invert;
-    /* Update prose colors to match new theme */
-    /* This is a basic example; you might need more specific selectors */
     h1, h2, h3, h4, h5, h6 {
-      @apply text-esoteric-purple;
+      color: theme('colors.text-main'); 
     }
     strong {
-      @apply text-starlight-gold;
+      color: theme('colors.theme-near-white');
     }
     a {
-      @apply text-cosmic-blue hover:text-starlight-gold;
+      color: theme('colors.text-main');
     }
+    a:hover {
+      color: theme('colors.theme-very-light-gray');
+    }
+    /* Base prose text will inherit from body or use prose-invert defaults */
   }
-  .prose-tarot-major {
-    @apply prose-headings:text-purple-500 prose-strong:text-purple-600;
-  }
-  .prose-tarot-cups {
-    @apply prose-headings:text-blue-500 prose-strong:text-blue-600;
-  }
-  .prose-tarot-swords {
-    @apply prose-headings:text-gray-500 prose-strong:text-gray-600;
-  }
-  .prose-tarot-wands {
-    @apply prose-headings:text-red-500 prose-strong:text-red-600;
-  }
-  .prose-tarot-pentacles {
-    @apply prose-headings:text-green-500 prose-strong:text-green-600;
-  }
+  /* Remove old color-specific prose styles or adapt them to grayscale */
+  .prose-tarot-major,
+  .prose-tarot-cups,
+  .prose-tarot-swords,
+  .prose-tarot-wands,
+  .prose-tarot-pentacles,
   .prose-tarot-amber {
-     @apply text-amber-500;
+     /* Reset to default or a subtle grayscale variation if needed */
+     /* For now, let them inherit general .prose-tarot styles */
   }
 }

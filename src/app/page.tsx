@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import WelcomeScreen from '../components/WelcomeScreen';
 import SpreadSelectionScreen from '../components/SpreadSelectionScreen';
 import CardInputScreen from '../components/CardInputScreen';
@@ -99,120 +100,115 @@ export default function Home() {
   };
   
   // Conditional Rendering Logic
-  if (currentStep === 'welcome') {
-    return <WelcomeScreen onNext={() => handleNextStep('spread_selection')} />;
-  }
+  // Wrap the screen components with AnimatePresence for exit animations
+  // and motion.div for enter/exit animations keyed by currentStep.
+  return (
+    <AnimatePresence mode="wait">
+      {currentStep === 'welcome' && (
+        <motion.div key="welcome" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <WelcomeScreen onNext={() => handleNextStep('spread_selection')} />
+        </motion.div>
+      )}
 
-  if (currentStep === 'spread_selection') {
-    return <SpreadSelectionScreen 
-              onSelectSpread={handleSpreadSelected} 
-              onBack={() => handleNextStep('welcome')} 
-           />;
-  }
-  
-  if (currentStep === 'card_input') {
-    if (!chosenSpread) {
-        // This case should ideally not be reached if flow is correct
-        // Redirect to spread selection or show error
-        // For now, simple fallback:
-        return (
-            <div className="min-h-screen bg-astral-dark text-astral-light p-8 flex flex-col items-center justify-center">
-                <p className="text-xl text-red-400 mb-4">Error: No spread selected.</p>
-                <button onClick={() => handleNextStep('spread_selection')} className="bg-cosmic-blue p-3 rounded-md text-lg">
-                    Please Select a Spread First
-                </button>
+      {currentStep === 'spread_selection' && (
+        <motion.div key="spread_selection" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <SpreadSelectionScreen 
+            onSelectSpread={handleSpreadSelected} 
+            onBack={() => handleNextStep('welcome')} 
+          />
+        </motion.div>
+      )}
+      
+      {currentStep === 'card_input' && (
+        <motion.div key="card_input" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          {!chosenSpread ? (
+            <div className="min-h-screen bg-mystic-dark text-mystic-text p-8 flex flex-col items-center justify-center">
+              <p className="text-xl text-red-400 mb-4">Error: No spread selected.</p>
+              <button onClick={() => handleNextStep('spread_selection')} className="bg-esoteric-indigo p-3 rounded-md text-lg">
+                  Please Select a Spread First
+              </button>
             </div>
-        );
-    }
-    return <CardInputScreen 
+          ) : (
+            <CardInputScreen 
               chosenSpread={chosenSpread} 
-              currentQuestion={userQuestion} // Pass initial question
+              currentQuestion={userQuestion}
               onReadingComplete={handleReadingReadyForInterpretation} 
               onBack={() => handleNextStep('spread_selection')} 
-           />;
-  }
-  
-  if (currentStep === 'interpretation') {
-    // Ensure all necessary data is available before rendering InterpretationScreen
-    // Loading and error states are handled within InterpretationScreen or globally by isLoading/error states displayed below
-    if (isLoading) {
-        // Show a full-page loading indicator for this critical step
-        return (
-            <div className="min-h-screen bg-astral-dark text-astral-light p-8 flex flex-col items-center justify-center">
-                <svg className="animate-spin h-12 w-12 text-starlight-gold mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <p className="text-xl text-starlight-gold">The Oracle is Conjuring Your Reading...</p>
+            />
+          )}
+        </motion.div>
+      )}
+      
+      {currentStep === 'interpretation' && (
+        <motion.div key="interpretation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          {isLoading ? (
+            <div className="min-h-screen bg-mystic-dark text-mystic-text p-8 flex flex-col items-center justify-center">
+              <svg className="animate-spin h-12 w-12 text-starlight-gold mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <p className="text-xl text-starlight-gold">The Oracle is Conjuring Your Reading...</p>
             </div>
-        );
-    }
-    if (error || !interpretation || !chosenSpread ) { // If error, or if data is missing (should not happen with error)
-        // Fallback to a generic error/status display if interpretation isn't ready or critical data missing
-        // This reuses the fallback view logic but could be a dedicated error component for interpretation step.
-    } else {
-        return <InterpretationScreen 
-                question={userQuestion}
-                spread={chosenSpread}
-                drawnCards={finalDrawnCards}
-                interpretation={interpretation}
-                onStartOver={() => handleNextStep('welcome')}
-                onAdjustCards={() => handleNextStep('card_input')} // Go back to card input
-             />;
-    }
-  }
+          ) : error || !interpretation || !chosenSpread ? (
+             // Fallback for error or missing data on interpretation screen, wrapped in motion.div
+            <div className="min-h-screen bg-mystic-dark text-mystic-text p-4 sm:p-8 flex flex-col items-center">
+              <header className="mb-10 text-center">
+                <h1 className="text-4xl sm:text-5xl font-bold text-astral-amethyst filter drop-shadow-[0_0_5px_rgba(106,13,173,0.8)]">
+                  Astral Oracle (Status)
+                </h1>
+              </header>
+              <main className="w-full max-w-4xl bg-midnight-ink shadow-2xl shadow-astral-amethyst/30 rounded-lg p-6 sm:p-8 ring-1 ring-astral-amethyst/50">
+                <p>Current Step: {currentStep}</p>
+                {chosenSpread && <p>Chosen Spread: {chosenSpread.name}</p>}
+                {userQuestion && <p>Your Question: &quot;{userQuestion}&quot;</p>}
+                <div className="my-6 space-x-4">
+                    <button onClick={() => handleNextStep('welcome')} className="bg-esoteric-indigo p-2 rounded">Start Over</button>
+                    {(currentStep === 'interpretation' || error) && 
+                     <button onClick={() => handleNextStep('card_input')} className="bg-ethereal-blue p-2 rounded text-mystic-dark">Adjust Cards/Question</button>
+                    }
+                </div>
+                {error && (
+                  <div className="mt-6 p-5 bg-red-900/50 border border-red-700 text-red-300 rounded-lg shadow-lg">
+                    <p className="font-semibold text-lg mb-1">An Unexpected Turn:</p>
+                    <p className="text-sm">{error}</p>
+                  </div>
+                )}
+                {!error && <p className="text-mystic-text-muted my-4">Interpretation data is unavailable or an error occurred.</p>}
+              </main>
+            </div>
+          ) : (
+            <InterpretationScreen 
+              question={userQuestion}
+              spread={chosenSpread}
+              drawnCards={finalDrawnCards}
+              interpretation={interpretation}
+              onStartOver={() => handleNextStep('welcome')}
+              onAdjustCards={() => handleNextStep('card_input')}
+            />
+          )}
+        </motion.div>
+      )}
 
-  // Fallback / Interim View (Mainly for errors if not caught by specific screens, or unexpected state)
-  return (
-    <div className="min-h-screen bg-astral-dark text-astral-light p-4 sm:p-8 flex flex-col items-center">
-      <header className="mb-10 text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold text-esoteric-purple filter drop-shadow-[0_0_5px_rgba(126,87,194,0.8)]">
-          Astral Oracle (Status)
-        </h1>
-      </header>
-      <main className="w-full max-w-4xl bg-astral-bg shadow-2xl shadow-esoteric-purple/30 rounded-lg p-6 sm:p-8 ring-1 ring-esoteric-purple/50">
-        <p>Current Step: {currentStep}</p>
-        {chosenSpread && <p>Chosen Spread: {chosenSpread.name}</p>}
-        {userQuestion && <p>Your Question: &quot;{userQuestion}&quot;</p>}
-        {finalDrawnCards.length > 0 && (
-            <div className="my-4">
-                <h4 className="text-cosmic-blue">Cards Submitted:</h4>
-                <ul className="text-xs">
-                    {finalDrawnCards.map(c => <li key={c.card.id + c.position_name}>{c.position_name}: {c.card.name} {c.is_reversed?'(R)':''}</li>)}
-                </ul>
+      {/* Fallback / Interim View if currentStep doesn't match known steps and is not handled above */}
+      {!['welcome', 'spread_selection', 'card_input', 'interpretation'].includes(currentStep) && (
+         <motion.div key="fallback" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <div className="min-h-screen bg-mystic-dark text-mystic-text p-4 sm:p-8 flex flex-col items-center">
+              <header className="mb-10 text-center">
+                <h1 className="text-4xl sm:text-5xl font-bold text-astral-amethyst filter drop-shadow-[0_0_5px_rgba(106,13,173,0.8)]">
+                  Astral Oracle (Status)
+                </h1>
+              </header>
+              <main className="w-full max-w-4xl bg-midnight-ink shadow-2xl shadow-astral-amethyst/30 rounded-lg p-6 sm:p-8 ring-1 ring-astral-amethyst/50">
+                <p>Current Step: {currentStep}</p>
+                <p className="text-mystic-text-muted my-4">Navigating the astral currents... if you see this, something is adrift.</p>
+                <div className="my-6">
+                    <button onClick={() => handleNextStep('welcome')} className="bg-esoteric-indigo p-2 rounded">Start Over</button>
+                </div>
+              </main>
             </div>
-        )}
-        
-        <div className="my-6 space-x-4">
-            <button onClick={() => handleNextStep('welcome')} className="bg-esoteric-purple p-2 rounded">Start Over</button>
-            {(currentStep === 'interpretation' || error) && 
-             <button onClick={() => handleNextStep('card_input')} className="bg-cosmic-blue p-2 rounded">Adjust Cards/Question</button>
-            }
-        </div>
-
-        {isLoading && <p className="text-starlight-gold text-lg my-4">Loading...</p>}
-        {error && (
-          <div className="mt-6 p-5 bg-red-900/50 border border-red-700 text-red-300 rounded-lg shadow-lg">
-            <p className="font-semibold text-lg mb-1">An Unexpected Turn:</p>
-            <p className="text-sm">{error}</p>
-          </div>
-        )}
-        {!isLoading && !error && currentStep !== 'interpretation' && (
-            <p className="text-astral-light/70 my-4">Navigating the astral currents... if you see this, something is adrift.</p>
-        )}
-        {interpretation && currentStep === 'interpretation' && !error && (
-            // This block is for the case where InterpretationScreen fails to render but we have data
-            // Ideally, InterpretationScreen handles its own display fully.
-             <div className="mt-6 p-6 bg-shadow-blue/70 border border-cosmic-blue/50 rounded-lg shadow-xl prose-tarot">
-                <h2 className="text-2xl font-bold mb-3 text-starlight-gold">The Oracle Speaks (Fallback):</h2>
-                <div
-                  className="whitespace-pre-wrap text-astral-light/90 text-sm leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: interpretation.replace(/\n/g, '<br />') }}
-                ></div>
-            </div>
-        )}
-      </main>
-    </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
