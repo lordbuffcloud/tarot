@@ -9,7 +9,7 @@ import SpreadSelectionScreen from '../components/SpreadSelectionScreen';
 import CardInputScreen from '../components/CardInputScreen';
 import InterpretationScreen from '../components/InterpretationScreen';
 import { getTarotInterpretationStream } from './actions/interpretAction';
-import type { SpreadCard, InterpretationRequest, Card as FullCardType } from '../lib/tarot-types';
+import type { SpreadCard, InterpretationRequest, FullCardType } from '../lib/tarot-types';
 import type { TarotSpread } from '../lib/tarotSpreadTypes';
 import { allCardsData } from '../lib/allCardsData';
 
@@ -253,12 +253,7 @@ export default function Home() {
                 const fullCard: FullCardType = {
                   id: sc.card_id,
                   name: sc.name,
-                  image_path: cardInfo?.imagePath || '',
-                  number: 0,
-                  suit: 'Major Arcana',
-                  arcana: 'Major',
-                  meaning_up: '',
-                  meaning_rev: '',
+                  imagePath: cardInfo?.imagePath || '',
                 };
                 return {
                   card: fullCard,

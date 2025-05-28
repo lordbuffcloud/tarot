@@ -1,4 +1,4 @@
-import { Card } from '@/lib/tarot-types';
+import { FullCardType as Card } from '@/lib/tarot-types';
 import CardThumbnail from './CardThumbnail';
 
 interface CardGridProps {

@@ -6,7 +6,7 @@ import type { TarotSpread } from '@/lib/tarotSpreadTypes';
 // REMOVE: import Image from 'next/image'; // For image preview
 import { allCardsData, type TarotCardInfo } from '@/lib/allCardsData'; // Import card data
 import CardThumbnail from './CardThumbnail'; // Import CardThumbnail
-import type { Card as FullCardType } from '@/lib/tarot-types'; // Import FullCardType
+import type { FullCardType } from '@/lib/tarot-types'; // Import FullCardType
 
 // Define the structure for a selected card (for digital selection)
 interface DigitallySelectedCard {
@@ -335,12 +335,13 @@ export default function CardInputScreen({
               const cardForThumbnail: FullCardType = {
                 id: cardInfo.id,
                 name: cardInfo.name,
-                image_path: cardInfo.imagePath, // Map imagePath to image_path
-                number: 0, // Placeholder
-                suit: 'Major Arcana', // Placeholder
-                arcana: 'Major', // Placeholder
-                meaning_up: '', // Placeholder
-                meaning_rev: '', // Placeholder
+                imagePath: cardInfo.imagePath, // Corrected from image_path
+                // The following properties are not part of FullCardType (DetailedCardSchema)
+                // number: 0, 
+                // suit: 'Major Arcana', 
+                // arcana: 'Major', 
+                // meaning_up: '', 
+                // meaning_rev: '', 
               };
               return (
                 <motion.div
@@ -393,8 +394,9 @@ export default function CardInputScreen({
                     cardForDisplay = {
                         id: originalCardInfo.id,
                         name: originalCardInfo.name,
-                        image_path: originalCardInfo.imagePath,
-                        number: 0, suit: 'Major Arcana', arcana: 'Major', meaning_up: '', meaning_rev: '', // Placeholders
+                        imagePath: originalCardInfo.imagePath, // Corrected from image_path
+                        // The following properties are not part of FullCardType (DetailedCardSchema)
+                        // number: 0, suit: 'Major Arcana', arcana: 'Major', meaning_up: '', meaning_rev: '', 
                     };
                  }
               }

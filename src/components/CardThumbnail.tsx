@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Card } from '@/lib/tarot-types';
+import { FullCardType as Card } from '@/lib/tarot-types';
 import { useState } from 'react';
 
 interface CardThumbnailProps {
@@ -23,10 +23,10 @@ export default function CardThumbnail({
 }: CardThumbnailProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Construct the image path using the image_path from the card prop and the correct base directory
+  // Construct the image path using the imagePath from the card prop and the correct base directory
   const basePath = '/images/tarot-images/cards/';
-  const finalImagePath = card.image_path ? `${basePath}${card.image_path}` : ''; 
-  // Fallback if card.image_path is somehow not provided, though it should be
+  const finalImagePath = card.imagePath ? `${basePath}${card.imagePath}` : ''; 
+  // Fallback if card.imagePath is somehow not provided, though it should be
   const placeholderPath = `${basePath}placeholder.png`; // Assume you might have a placeholder
 
   return (
