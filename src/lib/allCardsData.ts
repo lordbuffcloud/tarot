@@ -1,0 +1,95 @@
+export interface TarotCardInfo {
+  id: string; // e.g., "major_0", "wands_1", "cups_king"
+  name: string;
+  imagePath: string; // Path relative to /public/images/tarot-images/cards/
+}
+
+export const allCardsData: TarotCardInfo[] = [
+  // Major Arcana (0-21) - PLEASE VERIFY FILENAMES FOR 0-20
+  { id: "major_0", name: "The Fool", imagePath: "00_Fool.jpg" },
+  { id: "major_1", name: "The Magician", imagePath: "01_Magician.jpg" },
+  { id: "major_2", name: "The High Priestess", imagePath: "02_High_Priestess.jpg" },
+  { id: "major_3", name: "The Empress", imagePath: "03_Empress.jpg" },
+  { id: "major_4", name: "The Emperor", imagePath: "04_Emperor.jpg" },
+  { id: "major_5", name: "The Hierophant", imagePath: "05_Hierophant.jpg" },
+  { id: "major_6", name: "The Lovers", imagePath: "06_Lovers.jpg" },
+  { id: "major_7", name: "The Chariot", imagePath: "07_Chariot.jpg" },
+  { id: "major_8", name: "Strength", imagePath: "08_Strength.jpg" },
+  { id: "major_9", name: "The Hermit", imagePath: "09_Hermit.jpg" },
+  { id: "major_10", name: "Wheel of Fortune", imagePath: "10-WheelOfFortune.png" },
+  { id: "major_11", name: "Justice", imagePath: "11_Justice.jpg" },
+  { id: "major_12", name: "The Hanged Man", imagePath: "12-TheHangedMan.png" },
+  { id: "major_13", name: "Death", imagePath: "13_Death.jpg" },
+  { id: "major_14", name: "Temperance", imagePath: "14_Temperance.jpg" },
+  { id: "major_15", name: "The Devil", imagePath: "15_Devil.jpg" },
+  { id: "major_16", name: "The Tower", imagePath: "16_Tower.jpg" },
+  { id: "major_17", name: "The Star", imagePath: "17_Star.jpg" },
+  { id: "major_18", name: "The Moon", imagePath: "18_Moon.jpg" },
+  { id: "major_19", name: "The Sun", imagePath: "19_Sun.jpg" },
+  { id: "major_20", name: "Judgement", imagePath: "20_Judgement.jpg" },
+  { id: "major_21", name: "The World", imagePath: "21-TheWorld.png" }, // Corrected based on earlier user feedback
+
+  // Wands (Ace-King)
+  { id: "wands_1", name: "Ace of Wands", imagePath: "22_Ace_Of_Wands.jpg" },
+  { id: "wands_2", name: "Two of Wands", imagePath: "23_Two_Of_Wands.jpg" },
+  { id: "wands_3", name: "Three of Wands", imagePath: "24_Three_Of_Wands.jpg" },
+  { id: "wands_4", name: "Four of Wands", imagePath: "25_Four_Of_Wands.jpg" },
+  { id: "wands_5", name: "Five of Wands", imagePath: "26_Five_Of_Wands.jpg" },
+  { id: "wands_6", name: "Six of Wands", imagePath: "27_Six_Of_Wands.jpg" },
+  { id: "wands_7", name: "Seven of Wands", imagePath: "28_Seven_Of_Wands.jpg" },
+  { id: "wands_8", name: "Eight of Wands", imagePath: "29_Eight_Of_Wands.jpg" },
+  { id: "wands_9", name: "Nine of Wands", imagePath: "30_Nine_Of_Wands.jpg" },
+  { id: "wands_10", name: "Ten of Wands", imagePath: "31_Ten_Of_Wands.jpg" },
+  { id: "wands_page", name: "Page of Wands", imagePath: "32_Page_Of_Wands.jpg" },
+  { id: "wands_knight", name: "Knight of Wands", imagePath: "33_Knight_Of_Wands.jpg" },
+  { id: "wands_queen", name: "Queen of Wands", imagePath: "34_Queen_Of_Wands.jpg" },
+  { id: "wands_king", name: "King of Wands", imagePath: "35_King_Of_Wands.jpg" },
+
+  // Cups (Ace-King)
+  { id: "cups_1", name: "Ace of Cups", imagePath: "50_Ace_Of_Cups.jpg" },
+  { id: "cups_2", name: "Two of Cups", imagePath: "51_Two_Of_Cups.jpg" },
+  { id: "cups_3", name: "Three of Cups", imagePath: "52_Three_Of_Cups.jpg" },
+  { id: "cups_4", name: "Four of Cups", imagePath: "53_Four_Of_Cups.jpg" },
+  { id: "cups_5", name: "Five of Cups", imagePath: "54_Five_Of_Cups.jpg" },
+  { id: "cups_6", name: "Six of Cups", imagePath: "55_Six_Of_Cups.jpg" },
+  { id: "cups_7", name: "Seven of Cups", imagePath: "56_Seven_Of_Cups.jpg" },
+  { id: "cups_8", name: "Eight of Cups", imagePath: "57_Eight_Of_Cups.jpg" },
+  { id: "cups_9", name: "Nine of Cups", imagePath: "58_Nine_Of_Cups.jpg" },
+  { id: "cups_10", name: "Ten of Cups", imagePath: "59_Ten_Of_Cups.jpg" },
+  { id: "cups_page", name: "Page of Cups", imagePath: "60_Page_Of_Cups.jpg" },
+  { id: "cups_knight", name: "Knight of Cups", imagePath: "61_Knight_Of_Cups.jpg" },
+  { id: "cups_queen", name: "Queen of Cups", imagePath: "62_Queen_Of_Cups.jpg" },
+  { id: "cups_king", name: "King of Cups", imagePath: "63_King_Of_Cups.jpg" },
+
+  // Swords (Ace-King)
+  { id: "swords_1", name: "Ace of Swords", imagePath: "64_Ace_Of_Swords.jpg" },
+  { id: "swords_2", name: "Two of Swords", imagePath: "65_Two_Of_Swords.jpg" },
+  { id: "swords_3", name: "Three of Swords", imagePath: "66_Three_Of_Swords.jpg" },
+  { id: "swords_4", name: "Four of Swords", imagePath: "67_Four_Of_Swords.jpg" },
+  { id: "swords_5", name: "Five of Swords", imagePath: "68_Five_Of_Swords.jpg" },
+  { id: "swords_6", name: "Six of Swords", imagePath: "69_Six_Of_Swords.jpg" },
+  { id: "swords_7", name: "Seven of Swords", imagePath: "70_Seven_Of_Swords.jpg" },
+  { id: "swords_8", name: "Eight of Swords", imagePath: "71_Eight_Of_Swords.jpg" },
+  { id: "swords_9", name: "Nine of Swords", imagePath: "72_Nine_Of_Swords.jpg" },
+  { id: "swords_10", name: "Ten of Swords", imagePath: "73_Ten_Of_Swords.jpg" },
+  { id: "swords_page", name: "Page of Swords", imagePath: "74_Page_Of_Swords.jpg" },
+  { id: "swords_knight", name: "Knight of Swords", imagePath: "75_Knight_Of_Swords.jpg" },
+  { id: "swords_queen", name: "Queen of Swords", imagePath: "76_Queen_Of_Swords.jpg" },
+  { id: "swords_king", name: "King of Swords", imagePath: "77_King_Of_Swords.jpg" },
+
+  // Pentacles (Ace-King)
+  { id: "pentacles_1", name: "Ace of Pentacles", imagePath: "36_Ace_Of_Pentacles.jpg" },
+  { id: "pentacles_2", name: "Two of Pentacles", imagePath: "37_Two_Of_Pentacles.jpg" },
+  { id: "pentacles_3", name: "Three of Pentacles", imagePath: "38_Three_Of_Pentacles.jpg" },
+  { id: "pentacles_4", name: "Four of Pentacles", imagePath: "39_Four_Of_Pentacles.jpg" },
+  { id: "pentacles_5", name: "Five of Pentacles", imagePath: "40_Five_Of_Pentacles.jpg" },
+  { id: "pentacles_6", name: "Six of Pentacles", imagePath: "41_Six_Of_Pentacles.jpg" },
+  { id: "pentacles_7", name: "Seven of Pentacles", imagePath: "42_Seven_Of_Pentacles.jpg" },
+  { id: "pentacles_8", name: "Eight of Pentacles", imagePath: "43_Eight_Of_Pentacles.jpg" },
+  { id: "pentacles_9", name: "Nine of Pentacles", imagePath: "44_Nine_Of_Pentacles.jpg" },
+  { id: "pentacles_10", name: "Ten of Pentacles", imagePath: "45_Ten_Of_Pentacles.jpg" },
+  { id: "pentacles_page", name: "Page of Pentacles", imagePath: "46_Page_Of_Pentacles.jpg" },
+  { id: "pentacles_knight", name: "Knight of Pentacles", imagePath: "47_Knight_Of_Pentacles.jpg" },
+  { id: "pentacles_queen", name: "Queen of Pentacles", imagePath: "48_Queen_Of_Pentacles.jpg" },
+  { id: "pentacles_king", name: "King of Pentacles", imagePath: "49_King_Of_Pentacles.jpg" },
+]; 

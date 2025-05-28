@@ -114,5 +114,135 @@
         "description": "Advice or the potential direction for the relationship to evolve healthily."
       }
     ]
+  },
+  {
+    "id": "path_spread",
+    "name": "The Simple Path",
+    "description": "A clear and concise 4-card spread to understand your current standing, what to embrace, what to release, and your potential.",
+    "card_positions": [
+      {
+        "id": "ps_pos1",
+        "name": "You Are Here",
+        "description": "Your current situation or state of being regarding your query."
+      },
+      {
+        "id": "ps_pos2",
+        "name": "What to Embrace",
+        "description": "Energies, actions, or perspectives that will serve you well moving forward."
+      },
+      {
+        "id": "ps_pos3",
+        "name": "What to Let Go Of",
+        "description": "Old patterns, beliefs, or attachments that are hindering your progress."
+      },
+      {
+        "id": "ps_pos4",
+        "name": "Your Potential",
+        "description": "The potential outcome or state you can achieve by embracing the guidance."
+      }
+    ]
+  },
+  {
+    "id": "sao_spread",
+    "name": "Situation - Action - Outcome",
+    "description": "A straightforward 3-card spread to quickly assess a situation, the recommended action, and the likely result.",
+    "card_positions": [
+      {
+        "id": "sao_pos1",
+        "name": "The Situation",
+        "description": "The core of the current situation or problem."
+      },
+      {
+        "id": "sao_pos2",
+        "name": "Recommended Action",
+        "description": "The most constructive action to take in response to the situation."
+      },
+      {
+        "id": "sao_pos3",
+        "name": "Potential Outcome",
+        "description": "The likely outcome if the recommended action is taken."
+      }
+    ]
+  },
+  {
+    "id": "career_path_spread",
+    "name": "Career Path Clarity",
+    "description": "A 5-card spread to gain insights into your current career situation, aspirations, and steps towards fulfillment.",
+    "card_positions": [
+      {
+        "id": "cp_pos1",
+        "name": "Current Career Situation",
+        "description": "Your present state in your professional life."
+      },
+      {
+        "id": "cp_pos2",
+        "name": "Career Aspirations",
+        "description": "What you truly desire or aspire to in your career."
+      },
+      {
+        "id": "cp_pos3",
+        "name": "Steps to Take",
+        "description": "Practical steps or actions to move towards your aspirations."
+      },
+      {
+        "id": "cp_pos4",
+        "name": "Potential Challenges",
+        "description": "Obstacles or challenges you might encounter along the way."
+      },
+      {
+        "id": "cp_pos5",
+        "name": "Long-term Potential",
+        "description": "The potential long-term outcome or fulfillment in your career path."
+      }
+    ]
+  },
+  {
+    "id": "spiritual_guidance_spread",
+    "name": "Spiritual Guidance",
+    "description": "A 4-card spread for moments when you seek deeper connection and understanding on your spiritual journey.",
+    "card_positions": [
+      {
+        "id": "sg_pos1",
+        "name": "What My Spirit Seeks",
+        "description": "The current longing or quest of your inner self."
+      },
+      {
+        "id": "sg_pos2",
+        "name": "Blockages to Growth",
+        "description": "What is currently hindering your spiritual progress or connection."
+      },
+      {
+        "id": "sg_pos3",
+        "name": "Path to Deeper Connection",
+        "description": "How you can nurture a more profound spiritual connection or understanding."
+      },
+      {
+        "id": "sg_pos4",
+        "name": "Message from Higher Self/Guides",
+        "description": "Key wisdom or a message from your intuition, higher self, or spiritual guides."
+      }
+    ]
+  },
+  {
+    "id": "yes_no_clarifier_spread",
+    "name": "Yes/No Clarifier",
+    "description": "A 3-card spread to explore the energies surrounding a yes/no question, offering nuanced insight rather than a simple answer.",
+    "card_positions": [
+      {
+        "id": "ync_pos1",
+        "name": "The \"Yes\" Influence",
+        "description": "Represents energies, factors, or arguments supporting a \"yes\" outcome or perspective."
+      },
+      {
+        "id": "ync_pos2",
+        "name": "The \"No\" Influence",
+        "description": "Represents energies, factors, or arguments supporting a \"no\" outcome or perspective, or potential obstacles."
+      },
+      {
+        "id": "ync_pos3",
+        "name": "The Deciding Factor / Clarification",
+        "description": "This card provides deeper insight. It might show what the outcome hinges upon, offer advice, reveal a necessary shift in perspective, or indicate why the answer might be more complex (e.g., a \"maybe\" or \"not yet\")."
+      }
+    ]
   }
 ] 
