@@ -15,8 +15,8 @@ export const DetailedCardSchema = z.object({
   imagePath: z.string(), // Note: client components might map this to image_path for Next/Image
   // Optional fields from allCardsData if they exist, or if needed for FullCardType context
   // For example, if you had suit, arcana, meanings in allCardsData, add them here.
-  // suit: z.string().optional(),
-  // arcana: z.string().optional(),
+  suit: z.string().optional(),
+  arcana: z.string().optional(),
   // meaning_up: z.string().optional(),
   // meaning_rev: z.string().optional(),
 });

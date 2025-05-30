@@ -7,7 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import type { Card } from '@/lib/tarot-types';
+import type { FullCardType as Card } from '@/lib/tarot-types';
 
 // Define astral colors (can be imported from a shared config later if needed)
 const astralColors = {
