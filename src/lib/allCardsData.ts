@@ -16,9 +16,9 @@ export const allCardsData: TarotCardInfo[] = [
   { id: "major_7", name: "The Chariot", imagePath: "07_Chariot.jpg" },
   { id: "major_8", name: "Strength", imagePath: "08_Strength.jpg" },
   { id: "major_9", name: "The Hermit", imagePath: "09_Hermit.jpg" },
-  { id: "major_10", name: "Wheel of Fortune", imagePath: "10-WheelOfFortune.png" },
+  { id: "major_10", name: "Wheel of Fortune", imagePath: "10_Wheel_of_Fortune.jpg" },
   { id: "major_11", name: "Justice", imagePath: "11_Justice.jpg" },
-  { id: "major_12", name: "The Hanged Man", imagePath: "12-TheHangedMan.png" },
+  { id: "major_12", name: "The Hanged Man", imagePath: "12_Hanged_Man.jpg" },
   { id: "major_13", name: "Death", imagePath: "13_Death.jpg" },
   { id: "major_14", name: "Temperance", imagePath: "14_Temperance.jpg" },
   { id: "major_15", name: "The Devil", imagePath: "15_Devil.jpg" },
@@ -27,7 +27,7 @@ export const allCardsData: TarotCardInfo[] = [
   { id: "major_18", name: "The Moon", imagePath: "18_Moon.jpg" },
   { id: "major_19", name: "The Sun", imagePath: "19_Sun.jpg" },
   { id: "major_20", name: "Judgement", imagePath: "20_Judgement.jpg" },
-  { id: "major_21", name: "The World", imagePath: "21-TheWorld.png" }, // Corrected based on earlier user feedback
+  { id: "major_21", name: "The World", imagePath: "21_World.jpg" },
 
   // Wands (Ace-King)
   { id: "wands_1", name: "Ace of Wands", imagePath: "22_Ace_Of_Wands.jpg" },
