@@ -38,7 +38,7 @@ export default function AskQuestionScreen({
           Consult the Oracle
         </h1>
         <p className="text-lg text-slate-200/90 leading-relaxed">
-          The veil thins. What answers do you seek from the Tarot's wisdom?
+          The veil thins. What answers do you seek from the Tarot&apos;s wisdom?
           Focus your mind, quiet your spirit, and scribe your question below. This will be the beacon for your reading.
         </p>
       </header>

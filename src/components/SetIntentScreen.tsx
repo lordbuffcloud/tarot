@@ -38,7 +38,7 @@ export default function SetIntentScreen({
               <strong className="text-slate-100">2. Focus on Your Question:</strong> Bring your question—<em className='text-sky-300/90'>&quot;{userQuestion}&quot;</em>—to the forefront of your mind. Let it permeate your thoughts and emotions.
             </p>
             <p>
-              <strong className="text-slate-100">3. Shuffle with Intent:</strong> As you shuffle the cards, visualize your query infusing the deck. There's no right or wrong way to shuffle; do what feels natural. Continue until you feel a sense of completion or connection.
+              <strong className="text-slate-100">3. Shuffle with Intent:</strong> As you shuffle the cards, visualize your query infusing the deck. There&apos;s no right or wrong way to shuffle; do what feels natural. Continue until you feel a sense of completion or connection.
             </p>
             <p>
               <strong className="text-slate-100">4. The Next Step:</strong> Once you feel attuned and your cards are imbued with your energy, you will select a spread pattern (a constellation) for your reading.

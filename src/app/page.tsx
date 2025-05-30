@@ -215,7 +215,7 @@ export default function Home() {
               <main className="w-full max-w-4xl bg-slate-800/60 backdrop-blur-sm shadow-2xl shadow-purple-900/40 rounded-xl p-6 sm:p-8 ring-1 ring-purple-700/60">
                 <p className="text-lg text-slate-300/90 mb-2">Current Step: {currentStep}</p>
                 {chosenSpread && <p  className="text-md text-slate-300/80 mb-1">Chosen Spread: {chosenSpread.name}</p>}
-                {userQuestion && <p  className="text-md text-slate-300/80 mb-4">Your Question: "{userQuestion}"</p>}
+                {userQuestion && <p  className="text-md text-slate-300/80 mb-4">Your Question: &quot;{userQuestion}&quot;</p>}
                 
                 <div className="my-6 space-x-4">
                     <button 
