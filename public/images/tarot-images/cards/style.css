@@ -1,0 +1,25 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 2rem;
+}
+
+.tarot-area {
+  margin-top: 2rem;
+}
+
+#tarot-card {
+  width: 200px;
+  height: auto;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+#card-info {
+  margin-top: 1rem;
+}
+
+.hidden {
+  display: none;
+}
