@@ -5,8 +5,13 @@ import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { z } from 'zod';
 import { InterpretationRequestSchema, type InterpretationRequest } from '@/lib/tarot-types';
 
+// Validate environment variable at module load time
+if (!process.env.OPENAI_API_KEY) {
+  console.error('OPENAI_API_KEY is not set in environment variables');
+}
+
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || '',
 });
 
 // Base system prompt - can be expanded or chosen dynamically

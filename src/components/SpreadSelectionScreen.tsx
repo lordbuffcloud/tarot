@@ -63,10 +63,19 @@ export default function SpreadSelectionScreen({
                   }
                   onSelectSpread(spread);
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (userQuestion.trim()) {
+                      onSelectSpread(spread);
+                    }
+                  }
+                }}
                 className="bg-slate-800/60 hover:bg-purple-700/60 p-6 rounded-lg shadow-xl shadow-purple-900/30 ring-1 ring-purple-600/50 hover:ring-sky-400/70 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-400 text-left flex flex-col justify-between h-full disabled:opacity-50 disabled:cursor-not-allowed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: spreads.indexOf(spread) * 0.1 }}
+                aria-label={`Select ${spread.name} spread with ${spread.card_positions.length} cards`}
               >
                 <div>
                   <h2 className="text-2xl font-semibold text-sky-300 mb-2">{spread.name}</h2>

@@ -38,10 +38,6 @@ export default function CardInputScreen({
   // Default to digital_select
   const [inputMode, setInputMode] = useState<InputMode>('digital_select'); 
 
-  // REMOVE States for image upload
-  // const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
-  // const [imageBase64, setImageBase64] = useState<string | null>(null);
-  // const [imagePreview, setImagePreview] = useState<string | null>(null);
   
   // States for digital card selection
   const [digitallySelectedCards, setDigitallySelectedCards] = useState<DigitallySelectedCard[]>([]);
@@ -50,53 +46,10 @@ export default function CardInputScreen({
 
   useEffect(() => {
     setQuestion(currentQuestion);
-    // Reset states when spread or question changes
-    // REMOVE image related state resets
-    // setSelectedImageFile(null);
-    // setImageBase64(null);
-    // setImagePreview(null);
     setDigitallySelectedCards([]);
     setActiveCardForPlacement(null);
     setError(null);
-    // Optionally set default mode, e.g., setInputMode('digital_select');
   }, [chosenSpread, currentQuestion]);
-
-  // REMOVE handleImageSelect function entirely
-  /*
-  const handleImageSelect = (event: ChangeEvent<HTMLInputElement>) => {
-    setError(null);
-    const file = event.target.files?.[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) { 
-        setError('This vision is too vast! Please choose an image smaller than 5MB.');
-        setSelectedImageFile(null);
-        setImagePreview(null);
-        setImageBase64(null);
-        event.target.value = ''; 
-        return;
-      }
-      setSelectedImageFile(file);
-      const previewUrl = URL.createObjectURL(file);
-      setImagePreview(previewUrl);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setImageBase64(base64String.split(',')[1] || ''); 
-      };
-      reader.onerror = () => {
-        setError('The ether distorted the image. Please try another.');
-        setSelectedImageFile(null);
-        setImagePreview(null);
-        setImageBase64(null);
-      }
-      reader.readAsDataURL(file);
-    } else {
-      setSelectedImageFile(null);
-      setImagePreview(null);
-      setImageBase64(null);
-    }
-  };
-  */
 
   const generateAppDrawnCards = (): DigitallySelectedCard[] => {
     if (!allCardsData || allCardsData.length === 0) {
@@ -144,16 +97,8 @@ export default function CardInputScreen({
       setError('A question must guide the stars. Please enter your query.');
       return;
     }
-    setError(null); // Clear previous errors before new submission
+    setError(null);
 
-    // REMOVE 'image' mode logic
-    // if (inputMode === 'image') {
-    //   if (!imageBase64) {
-    //     setError('The Oracle awaits your vision. Please upload an image of your spread.');
-    //     return;
-    //   }
-    //   onReadingComplete(question, { imageBase64 });
-    // } else 
     if (inputMode === 'digital_select') {
       if (digitallySelectedCards.length !== chosenSpread.card_positions.length) {
         setError(`Please select all ${chosenSpread.card_positions.length} cards for the ${chosenSpread.name} spread.`);
@@ -262,39 +207,6 @@ export default function CardInputScreen({
     );
   }
 
-  // REMOVE renderImageUploadUI function entirely
-  /*
-  const renderImageUploadUI = () => (
-    <div className="text-center p-4 border-2 border-dashed border-ethereal-blue/60 rounded-lg bg-shadow-purple/40 shadow-inner mt-4">
-      <h2 className="text-xl font-semibold text-starlight-gold mb-2">
-        Unveil Your Spread via Image
-      </h2>
-      <p className="text-sm text-mystic-text/80 mb-4">
-        With focused intent, lay out your sacred cards for the <strong className="text-ethereal-blue">{chosenSpread.name}</strong> ({chosenSpread.card_positions.length} cards). 
-        Ensure clear light upon them, then capture their essence in a photograph and offer it to the digital ether below.
-      </p>
-      <label 
-        htmlFor="spreadImageUpload"
-        className="cursor-pointer inline-block bg-astral-amethyst hover:bg-starlight-gold hover:text-mystic-dark text-white font-semibold py-3 px-6 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-mystic-dark focus:ring-starlight-gold transition-all duration-300 ease-in-out transform hover:scale-105 ring-2 ring-transparent hover:ring-white/70"
-      >
-        {selectedImageFile ? `Vision Captured: ${selectedImageFile.name}` : 'Offer Image to Oracle'}
-      </label>
-      <input 
-        id="spreadImageUpload" 
-        type="file" 
-        accept="image/*" 
-        onChange={handleImageSelect} 
-        className="hidden" 
-      />
-      {imagePreview && (
-        <div className="mt-6 border-2 border-starlight-gold/70 p-3 rounded-lg bg-black/30 shadow-md max-w-md mx-auto filter drop-shadow-[0_0_5px_rgba(255,215,0,0.3)]">
-          <p className="text-xs text-starlight-gold mb-2 text-left">Your Vision (Preview):</p>
-          <Image src={imagePreview} alt="Preview of uploaded tarot spread" width={300} height={200} style={{objectFit: "contain"}} className="rounded-md" />
-        </div>
-      )}
-    </div>
-  );
-  */
 
   const renderDigitalSelectionUI = () => {
     const remainingCardsInDeck = allCardsData.filter(
@@ -354,7 +266,7 @@ export default function CardInputScreen({
                   className="aspect-[2/3]" // Maintain aspect ratio for cards
                 >
                   <CardThumbnail
-                    card={cardForThumbnail} // Pass the mapped card data
+                    card={cardForThumbnail}
                     size="md"
                     onClick={() => handleSourceCardClick(cardInfo)}
                     selected={activeCardForPlacement?.id === cardInfo.id}
@@ -405,8 +317,17 @@ export default function CardInputScreen({
                 <motion.div
                   key={slotId}
                   layout
-                  className="w-full aspect-[2/3] p-1 flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-purple-500/40 hover:border-sky-400 transition-colors text-center relative bg-slate-900/40"
+                  className="w-full aspect-[2/3] p-1 flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-purple-500/40 hover:border-sky-400 transition-colors text-center relative bg-slate-900/40 focus-within:ring-2 focus-within:ring-sky-400"
                   onClick={() => handleSlotClick(slotId, position.name)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleSlotClick(slotId, position.name);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Place card in position: ${position.name}`}
                   initial={{ opacity: 0.6 }}
                   animate={{ opacity: 1 }}
                 >
@@ -495,15 +416,6 @@ export default function CardInputScreen({
       </header>
 
       <div className="mb-6 flex flex-wrap justify-center gap-3 sm:gap-4">
-        {/* REMOVE Upload Image button */}
-        {/* 
-        <button 
-          onClick={() => setInputMode('image')}
-          className={`py-2 px-5 rounded-md font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 ${inputMode === 'image' ? 'bg-starlight-gold text-mystic-dark shadow-lg ring-starlight-gold/70' : 'bg-slate-700 text-starlight-gold hover:bg-slate-600 ring-1 ring-slate-600'}`}
-        >
-          Upload Image
-        </button>
-        */}
         <button 
           onClick={() => setInputMode('digital_select')}
           className={`py-2 px-5 rounded-md font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 ${inputMode === 'digital_select' ? 'bg-sky-400 text-mystic-dark shadow-lg ring-sky-400/70' : 'bg-slate-700 text-sky-300 hover:bg-slate-600 ring-1 ring-slate-600'}`}
@@ -520,7 +432,6 @@ export default function CardInputScreen({
 
       <main className="w-full max-w-5xl xl:max-w-6xl bg-slate-800/50 shadow-2xl shadow-purple-900/40 rounded-xl p-4 sm:p-6 ring-1 ring-purple-700/60">
         <div className="space-y-6">
-          {/* Update conditional rendering */}
           {inputMode === 'digital_select' ? renderDigitalSelectionUI() : renderAppDrawUI()}
 
           {error && (
@@ -534,9 +445,11 @@ export default function CardInputScreen({
 
           <button
             onClick={handleSubmitReading}
-            disabled={ // Update disabled condition
-                      (inputMode === 'digital_select' && (digitallySelectedCards.length !== chosenSpread.card_positions.length || !question.trim())) ||
-                      (inputMode === 'app_draw' && !question.trim()) }
+            disabled={
+              (inputMode === 'digital_select' && (digitallySelectedCards.length !== chosenSpread.card_positions.length || !question.trim())) ||
+              (inputMode === 'app_draw' && !question.trim())
+            }
+            aria-label="Submit reading for interpretation"
             className="w-full bg-gradient-to-r from-purple-500 to-sky-500 hover:from-purple-600 hover:to-sky-600 text-white font-bold py-4 px-6 rounded-lg shadow-xl hover:shadow-purple-500/40 focus:outline-none focus:ring-4 focus:ring-purple-400/70 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ease-in-out text-lg filter hover:brightness-110 disabled:filter-none transform hover:scale-102 disabled:scale-100"
           >
             Unveil the Oracle&apos;s Wisdom

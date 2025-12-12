@@ -48,9 +48,16 @@ export default function AskQuestionScreen({
           rows={4}
           value={userQuestion}
           onChange={(e) => setUserQuestion(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && userQuestion.trim()) {
+              e.preventDefault();
+              handleSubmit();
+            }
+          }}
           placeholder="E.g., What should I focus on in my career right now? or How can I improve my relationship with...?"
           className="w-full p-4 bg-slate-800 border-2 border-purple-600/70 rounded-lg text-slate-100 text-base sm:text-lg placeholder:text-slate-400 focus:ring-2 focus:ring-sky-400 focus:border-sky-400 shadow-xl transition-colors duration-300 ease-in-out"
           aria-label="Your question for the tarot"
+          aria-required="true"
         />
       </main>
 
@@ -64,7 +71,8 @@ export default function AskQuestionScreen({
         <button 
           onClick={handleSubmit}
           disabled={!userQuestion.trim()}
-          className="bg-gradient-to-r from-purple-600 to-sky-600 hover:from-purple-700 hover:to-sky-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out text-xl order-1 sm:order-2"
+          className="bg-gradient-to-r from-purple-600 to-sky-600 hover:from-purple-700 hover:to-sky-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out text-xl order-1 sm:order-2 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+          aria-label="Submit your question and proceed"
         >
           Set My Question &rarr;
         </button>

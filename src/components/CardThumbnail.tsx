@@ -4,12 +4,13 @@ import { useState } from 'react';
 
 interface CardThumbnailProps {
   card: Card;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   onClick?: () => void;
   selected?: boolean;
 }
 
 const sizeClasses = {
+  xs: 'w-12 h-16',
   sm: 'w-20 h-32',
   md: 'w-28 h-44',
   lg: 'w-36 h-56',

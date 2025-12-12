@@ -8,10 +8,13 @@ import SetIntentScreen from '../components/SetIntentScreen';
 import SpreadSelectionScreen from '../components/SpreadSelectionScreen';
 import CardInputScreen from '../components/CardInputScreen';
 import InterpretationScreen from '../components/InterpretationScreen';
+import ReadingHistoryScreen from '../components/ReadingHistoryScreen';
 import { getTarotInterpretationStream } from './actions/interpretAction';
 import type { SpreadCard, InterpretationRequest, FullCardType } from '../lib/tarot-types';
 import type { TarotSpread } from '../lib/tarotSpreadTypes';
 import { allCardsData } from '../lib/allCardsData';
+import { saveReading, type SavedReading } from '../lib/readingHistory';
+import { useEffect } from 'react';
 
 const mysticWisdom = [
   "The threads of fate are ever-weaving...",
@@ -27,7 +30,8 @@ type ReadingStep =
   'set_intent' | 
   'spread_selection' | 
   'card_input' |
-  'interpretation';
+  'interpretation' |
+  'history';
 
 // Define DigitallySelectedCard structure (as it's used in this file's state and functions)
 interface DigitallySelectedCard {
@@ -130,7 +134,38 @@ export default function Home() {
       if (result.error) {
         setError(`Interpretation Error: ${result.error}${result.details ? ` - ${JSON.stringify(result.details)}` : ''}`);
       } else if (result.interpretation) {
-        setInterpretation(result.interpretation); setError(null);
+        setInterpretation(result.interpretation); 
+        setError(null);
+        
+        // Save reading to history
+        if (chosenSpread && data.selectedCards) {
+          try {
+            const drawnCards: SpreadCard[] = data.selectedCards.map((sc, index) => {
+              const cardInfo = allCardsData.find(card => card.id === sc.card_id);
+              const fullCard: FullCardType = {
+                id: sc.card_id,
+                name: sc.name,
+                imagePath: cardInfo?.imagePath || '',
+              };
+              return {
+                card: fullCard,
+                is_reversed: sc.is_reversed,
+                position_name: chosenSpread.card_positions[index]?.name || `Card ${index + 1}`,
+                position_description: chosenSpread.card_positions[index]?.description,
+              };
+            });
+            
+            saveReading({
+              question: questionFromInput,
+              spread: chosenSpread,
+              cards: drawnCards,
+              interpretation: result.interpretation,
+            });
+          } catch (historyError) {
+            console.error('Failed to save reading to history:', historyError);
+            // Don't show error to user, just log it
+          }
+        }
       } else {
         setError('Received an unexpected response structure from interpretation service.');
       }
@@ -148,7 +183,32 @@ export default function Home() {
     <AnimatePresence mode="wait">
       {currentStep === 'welcome' && (
         <motion.div key="welcome" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <WelcomeScreen onNext={() => handleNextStep('ask_question')} />
+          <WelcomeScreen 
+            onNext={() => handleNextStep('ask_question')} 
+            onViewHistory={() => handleNextStep('history')}
+          />
+        </motion.div>
+      )}
+
+      {currentStep === 'history' && (
+        <motion.div key="history" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <ReadingHistoryScreen 
+            onBack={() => handleNextStep('welcome')}
+            onLoadReading={(reading: SavedReading) => {
+              setUserQuestion(reading.question);
+              setChosenSpread(reading.spread);
+              setInterpretation(reading.interpretation);
+              setRequestDataForApi({
+                question: reading.question,
+                selected_cards: reading.cards.map(c => ({
+                  card_id: c.card.id,
+                  name: c.card.name,
+                  is_reversed: c.is_reversed,
+                })),
+              });
+              handleNextStep('interpretation');
+            }}
+          />
         </motion.div>
       )}
 
