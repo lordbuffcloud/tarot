@@ -64,7 +64,7 @@ export async function POST(req: Request) {
             temperature: 0.7,
         });
 
-        const stream = OpenAIStream(response);
+        const stream = OpenAIStream(response as any);
         return new StreamingTextResponse(stream);
 
     } catch (error) {
